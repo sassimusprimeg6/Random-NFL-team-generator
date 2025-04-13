@@ -8,27 +8,31 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
-            background-image: url('nfl_field.jpg');
-            background-size: cover ;
-            background-position: center;
-            Background-repeat: no-repeat;
+            margin: 0; /* Removes default margin */
+            padding: 0; /* Removes default padding */
+            height: 100vh; /* Full height */
+            background-image: url('path/to/your-background-image.jpg'); /* Replace with your image path */
+            background-size: cover; /* Ensures the image covers the entire page */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents tiling */
         }
         button {
             padding: 10px 20px;
             font-size: 16px;
+            z-index: 1; /* Keeps the button on top of the background */
         }
         img {
             margin-top: 20px;
             max-width: 300px;
             height: auto;
+            z-index: 1; /* Keeps the image on top of the background */
         }
     </style>
 </head>
 <body>
     <h1>Random NFL Team Generator</h1>
     <p>Click the button to select a random NFL Team.</p>
-    <button onclick="generateRandomTeam()">Select</button>
+    <button onclick="generateRandomTeam()">Generate</button>
     <div id="image-container"></div>
     <script>
         function generateRandomTeam() {
@@ -68,23 +72,21 @@
             ];
 
             const imageContainer = document.getElementById("image-container");
-            let index = 0; // Start at the first image
-            const animationInterval = 100; // Interval between each image display
-            const animationDuration = 3000; // Total animation duration
-            let cycleCount = 0;
+            let index = 0;
+            const animationDuration = 3000;
+            const animationInterval = 100;
+            let cycle = 0;
 
             const interval = setInterval(() => {
                 imageContainer.innerHTML = `<img src="${teamImages[index]}" alt="NFL Team">`;
-                console.log(`Displaying: ${teamImages[index]}`); // Log currently displayed image
-
                 index = (index + 1) % teamImages.length; // Loop through images sequentially
-                cycleCount += animationInterval;
+                cycle += animationInterval;
 
-                if (cycleCount >= animationDuration) {
-                    clearInterval(interval); // Stop animation after duration
-                    const finalImage = teamImages[Math.floor(Math.random() * teamImages.length)];
-                    imageContainer.innerHTML = `<img src="${finalImage}" alt="NFL Team">`;
-                    console.log(`Final team: ${finalImage}`); // Log the final image
+                if (cycle >= animationDuration) {
+                    clearInterval(interval);
+
+                    const finalIndex = Math.floor(Math.random() * teamImages.length);
+                    imageContainer.innerHTML = `<img src="${teamImages[finalIndex]}" alt="NFL Team">`;
                 }
             }, animationInterval);
         }
