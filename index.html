@@ -28,7 +28,7 @@
     <div id="image-container"></div>
     <script>
         function generateRandomTeam() {
-            // List of image URLs corresponding to NFL teams
+            // Array of image paths for NFL teams
             const teamImages = [
                 1: "team_images/49ers.png",
                 2: "team_images/bears.png",
@@ -64,15 +64,31 @@
                 32: "team_images/vikings.png"
             ];
             
-            // Generate a random index for the teamImages array
-            const randomIndex = Math.floor(Math.random() * teamImages.length);
-            
-            // Get the random image URL
-            const randomImage = teamImages[randomIndex];
-            
-            // Display the image
             const imageContainer = document.getElementById('image-container');
-            imageContainer.innerHTML = `<img src="${randomImage}" alt="NFL Team">`;
+
+            // Set up variables for animation
+            let interval;
+            let count = 0;
+            const animationDuration = 3000; // Total duration of animation in milliseconds
+            const animationInterval = 100; // Interval between image switches in milliseconds
+
+            // Start rapidly switching images
+            interval = setInterval(() => {
+                // Cycle through the images
+                const randomIndex = Math.floor(Math.random() * teamImages.length);
+                const randomImage = teamImages[randomIndex];
+                imageContainer.innerHTML = `<img src="${randomImage}" alt="NFL Team">`;
+                count += animationInterval;
+                
+                // Stop the animation after the duration is reached
+                if (count >= animationDuration) {
+                    clearInterval(interval);
+                    // Display the final random image
+                    const finalIndex = Math.floor(Math.random() * teamImages.length);
+                    const finalImage = teamImages[finalIndex];
+                    imageContainer.innerHTML = `<img src="${finalImage}" alt="NFL Team">`;
+                }
+            }, animationInterval);
         }
     </script>
 </body>
