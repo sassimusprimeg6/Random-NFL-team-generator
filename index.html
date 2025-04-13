@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random NFL Team Generator</title>
+    <title>Random NFL Team Selector</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,7 +11,7 @@
             margin: 0; /* Removes default margin */
             padding: 0; /* Removes default padding */
             height: 100vh; /* Full height */
-            background-image: url('path/to/your-background-image.jpg'); /* Replace with your image path */
+            background-image: url('nfl_field.jpg');
             background-size: cover; /* Ensures the image covers the entire page */
             background-position: center; /* Centers the image */
             background-repeat: no-repeat; /* Prevents tiling */
@@ -30,12 +30,12 @@
     </style>
 </head>
 <body>
-    <h1>Random NFL Team Generator</h1>
+    <h1>Random NFL Team Selector</h1>
     <p>Click the button to select a random NFL Team.</p>
-    <button onclick="generateRandomTeam()">Generate</button>
+    <button onclick="selectRandomTeam()">Select</button>
     <div id="image-container"></div>
     <script>
-        function generateRandomTeam() {
+        function selectRandomTeam() {
             const teamImages = [
                 1: "team_images/49ers.png",
                 2: "team_images/bears.png",
