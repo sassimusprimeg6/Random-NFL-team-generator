@@ -14,22 +14,34 @@
             padding: 10px 20px;
             font-size: 16px;
         }
-        #result {
+        img {
             margin-top: 20px;
-            font-size: 24px;
-            font-weight: bold;
+            max-width: 300px;
+            height: auto;
         }
     </style>
 </head>
 <body>
     <h1>Random NFL Team Generator</h1>
     <p>Click the button to select a random NFL Team.</p>
-    <button onclick="generateRandomNumber()">Generate</button>
-    <div id="result"></div>
+    <button onclick="generateRandomTeam()">Generate</button>
+    <div id="image-container"></div>
     <script>
-        function generateRandomNumber() {
-            const randomNumber = Math.floor(Math.random() * 32) + 1;
-            document.getElementById('result').textContent = `Random Number: ${randomNumber}`;
+        function generateRandomTeam() {
+            // List of image URLs corresponding to NFL teams
+            const teamImages = [
+                
+            ];
+            
+            // Generate a random index for the teamImages array
+            const randomIndex = Math.floor(Math.random() * teamImages.length);
+            
+            // Get the random image URL
+            const randomImage = teamImages[randomIndex];
+            
+            // Display the image
+            const imageContainer = document.getElementById('image-container');
+            imageContainer.innerHTML = `<img src="${randomImage}" alt="NFL Team">`;
         }
     </script>
 </body>
