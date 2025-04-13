@@ -42,7 +42,7 @@ def random_image_path():
     
     # Get the image path corresponding to the random number
     selected_image = image_paths[random_number]
-    print(f"Randomly selected image path: {selected_image}")
+    print(f{selected_image})
 
 # Call the function
 random_image_path()
