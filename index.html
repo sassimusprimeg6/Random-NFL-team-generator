@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random NFL Team Selector</title>
+    <title>Random NFL Team Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -24,11 +24,10 @@
 <body>
     <h1>Random NFL Team Generator</h1>
     <p>Click the button to select a random NFL Team.</p>
-    <button onclick="generateRandomTeam()">Select</button>
+    <button onclick="generateRandomTeam()">Generate</button>
     <div id="image-container"></div>
     <script>
         function generateRandomTeam() {
-            // Array of image paths for NFL teams
             const teamImages = [
                 1: "team_images/49ers.png",
                 2: "team_images/bears.png",
@@ -63,27 +62,27 @@
                 31: "team_images/titans.png",
                 32: "team_images/vikings.png"
             ];
-            
-            const imageContainer = document.getElementById('image-container');
 
-            // Set up variables for animation
-            let interval;
-            let count = 0;
-            const animationDuration = 3000; // Total duration of animation in milliseconds
-            const animationInterval = 100; // Interval between image switches in milliseconds
+            const imageContainer = document.getElementById("image-container");
+            let index = 0; // Start at the first image
+            const animationDuration = 3000; // Animation duration in milliseconds
+            const animationInterval = 100; // Interval between each image display
+            const totalCycles = animationDuration / animationInterval;
+            let cycle = 0;
 
-            // Start rapidly switching images
-            interval = setInterval(() => {
-                // Cycle through the images
-                const randomIndex = Math.floor(Math.random() * teamImages.length);
-                const randomImage = teamImages[randomIndex];
-                imageContainer.innerHTML = `<img src="${randomImage}" alt="NFL Team">`;
-                count += animationInterval;
-                
-                // Stop the animation after the duration is reached
-                if (count >= animationDuration) {
+            // Start the animation
+            const interval = setInterval(() => {
+                // Show the next image in sequence
+                imageContainer.innerHTML = `<img src="${teamImages[index]}" alt="NFL Team">`;
+                index = (index + 1) % teamImages.length; // Loop back to the beginning if at the end
+
+                cycle++;
+
+                // Stop the animation after reaching the total number of cycles
+                if (cycle >= totalCycles) {
                     clearInterval(interval);
-                    // Display the final random image
+
+                    // Select a final random team
                     const finalIndex = Math.floor(Math.random() * teamImages.length);
                     const finalImage = teamImages[finalIndex];
                     imageContainer.innerHTML = `<img src="${finalImage}" alt="NFL Team">`;
